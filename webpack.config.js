@@ -42,12 +42,8 @@ module.exports = {
         use: [
           'html-loader'
         ]
-      },
-      // {
-      //   // test: /\.exec\.js$/,
-      //   test: /\.js$/,
-      //   use: [ 'script-loader' ]
-      // }
+      }
+
     ]
 
   },

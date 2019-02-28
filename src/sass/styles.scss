@@ -219,9 +219,9 @@ a {
   }
 }
 .map {
-  @include tablet {
-    display: none;
-  };
+  display: none;
+  // @include tablet {
+  // }
   @include size(100vw, auto);
 }
 
