@@ -52,6 +52,7 @@ Practice setting up a web development environment and design and build a respons
 ## Setup/Installation Requirements
 
 * Clone from https://github.com/
+* Run "npm install"
 * Open
 * Edit files as desired
 

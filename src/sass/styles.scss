@@ -1,5 +1,7 @@
 $font-stack: Helvetica, sans-serif;
-$main-color: #5b5b5b;
+$main-color: #493d31;
+$accent-color: #b2dcfc;
+
 
 @mixin tablet {
   @media screen and (min-width: 600px) {
@@ -19,6 +21,12 @@ $main-color: #5b5b5b;
   }
 }
 
+@mixin mobile {
+  @media screen and (max-width: 599px) {
+    @content;
+  }
+}
+
 @mixin cushion($padding, $margin) {
   padding: $padding;
   margin: $margin;
@@ -29,28 +37,176 @@ $main-color: #5b5b5b;
   height: $height;
 }
 
+
+
+@mixin border($color) {
+  border: 1px solid $color;
+}
+
 * {
   padding: 0;
   margin: 0;
 }
 
 html {
+  width: 100vw;
   font-size: 16px;
+  @include tablet {
+    font-size: 18px;
+  };
+  @include tabletLandscape {
+    font-size: 18px;
+  };
+  @include desktop {
+    font-size: 20px;
+  };
 }
 
 body {
-  background-image: url("../assets/img/clamLick.jpg");
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 100vw auto;
+  width: 100vw;
   font: 1em $font-stack;
   color: $main-color;
 }
 
-.title {
-  @include size(50vw, auto);
-  @include cushion(0, 1rem 0 4rem 1rem) ;
+a {
+  text-decoration: none;
 }
+
+.container {
+  position: relative;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  // align-items: center;
+  @include tablet {
+    height: 300px;
+  }
+  @include tabletLandscape {
+    height: 400px;
+  }
+  @include desktop {
+    height: 500px;
+  }
+  background: #f0f;
+  // @include size(100vw, auto);
+
+  .main {
+    // @include size(100vw, auto);
+    z-index: 0;
+  }
+  .title {
+    @include size(50vw, auto);
+    @include cushion(0, 1rem 0 0 1rem) ;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    @include tablet {
+      @include size(40vw, auto);
+    }
+    @include tabletLandscape {
+      @include size(30vw, auto);
+    }
+  }
+}
+
+.hospitality {
+  display: flex;
+  align-items: flex-end;
+  .main {
+    @include size(100vw, auto)
+  }
+}
+
+.attractions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .main {
+    flex-shrink: 0;
+  }
+  @include tablet {
+    .main {
+      @include size(140%, auto);
+    }
+  }
+  @include mobile {
+    max-height: 286px;
+    align-self: flex-start;
+    .main {
+      @include size(100%, auto);
+      }
+    }
+  }
+
+.events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .main {
+    flex-shrink: 0;
+  }
+  @include tablet {
+    .main {
+      @include size(130%, auto);
+    }
+  }
+  @include mobile {
+    max-height: 286px;
+    align-self: flex-start;
+    .main {
+      @include size(100%, auto);
+      }
+    }
+  }
+
+.news{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  @include mobile {
+    max-height: 286px;
+  }
+  .main {
+    flex-shrink: 0;
+    width: 100%;
+    @include tablet {
+      position: relative;
+      top: 2rem;
+    }
+  }
+  img {
+    // height: 100%;
+  }
+}
+
+// .events {
+//
+//   .main {
+//     width: 100%;
+//
+//   }
+// }
+
+.home {
+  display: flex;
+  align-items: center;
+  .main {
+    @include size(100vw, auto)
+    @include desktop {
+      position: relative;
+      top: -3rem;
+    }
+  }
+}
+
+
 
 .links {
   display: flex;
@@ -63,44 +219,67 @@ body {
   }
 }
 .map {
-  display: none;
+  @include tablet {
+    display: none;
+  };
   @include size(100vw, auto);
 }
 
 .nav {
   order: 1;
+  width: 100%;
   @include tablet {
     order: -1;
-  };
+  }
 
   ul {
     display: flex;
     flex-flow: column nowrap;
     list-style: none;
+    justify-content: space-between;
     @include tablet {
       // display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       // justify-content: space-between;
-      border-right: 1px solid $main-color;
+      // border-right: 1px solid $main-color;
     }
 
-    li {
-      @include cushion(5px, 0);
-      @include size(calc(100vw / 4), auto);
-      align-items: stretch;
-      text-transform: uppercase;
-      text-align: center;
-      background-color: #b2dcfc;
-      border-bottom: 1px solid $main-color;
+    a {
+      color: $main-color;
+      width: 100%;
+      @include tablet {
+        border-left: 1px solid $main-color;
+      }
+
+      li {
+        @include cushion(5px, 0);
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        text-align: center;
+        background-color: $accent-color;
+        border-bottom: 1px solid $main-color;
+        @include tablet {
+          border-bottom: 0;
+        }
+      }
+
+      li:hover {
+        background-color: darken($accent-color, 20%);
+      }
+
     }
 
-    li:first-of-type {
+    a:first-of-type {
+      border-left: 0px;
       border-top: 1px solid $main-color;
       @include tablet {
         border-top: 0;
-      };
+        border-left: 0;
+      }
     }
-
+    a:hover {
+      color: white;
+    }
   }
 }

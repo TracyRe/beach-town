@@ -43,6 +43,11 @@ module.exports = {
           'html-loader'
         ]
       },
+      // {
+      //   // test: /\.exec\.js$/,
+      //   test: /\.js$/,
+      //   use: [ 'script-loader' ]
+      // }
     ]
 
   },
@@ -55,7 +60,27 @@ module.exports = {
         filename: 'index.html'
     }),
 
-     
+      new HtmlWebpackPlugin({
+        template: './src/attractions.html',
+        filename: 'attractions.html'
+    }),
+
+      new HtmlWebpackPlugin({
+        template: './src/eat-stay.html',
+        filename: 'eat-stay.html'
+    }),
+
+      new HtmlWebpackPlugin({
+        template: './src/events.html',
+        filename: 'events.html'
+    }),
+
+      new HtmlWebpackPlugin({
+        template: './src/news.html',
+        filename: 'news.html'
+    })
+
+
   ]
 
 };
