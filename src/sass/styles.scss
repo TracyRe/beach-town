@@ -1,6 +1,11 @@
-$font-stack: Helvetica, sans-serif;
+$font-stack: 'Barlow', sans-serif;
+$font-head: 'Bubbler One', sans-serif;
 $main-color: #493d31;
 $accent-color: #b2dcfc;
+$bg-color: #f4f7ed;
+$link: #f25841;
+$box-shadow: 2px 2px 10px rgba(81, 84, 74, .6);
+// #F6F6F6;
 
 
 @mixin tablet {
@@ -37,7 +42,10 @@ $accent-color: #b2dcfc;
   height: $height;
 }
 
-
+@mixin min-max-width($min-width, $max-width) {
+  min-width: $min-width;
+  max-width: $max-width;
+}
 
 @mixin border($color) {
   border: 1px solid $color;
@@ -46,6 +54,7 @@ $accent-color: #b2dcfc;
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -66,24 +75,40 @@ body {
   width: 100vw;
   font: 1em $font-stack;
   color: $main-color;
+  background: #fff;
 }
 
 a {
   text-decoration: none;
+  color: $link;
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-head;
+}
+
+h1 {
+  margin: 1rem 0 .5rem 0;
+}
+
+p {
+  line-height: 140%;
+  margin-bottom: 1rem;
 }
 
 .container {
   position: relative;
   max-width: 1200px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
+  background: $bg-color;
 }
 
 .header {
   width: 100%;
   overflow: hidden;
   display: flex;
-  // align-items: center;
   @include tablet {
     height: 300px;
   }
@@ -93,11 +118,8 @@ a {
   @include desktop {
     height: 500px;
   }
-  background: #f0f;
-  // @include size(100vw, auto);
 
   .main {
-    // @include size(100vw, auto);
     z-index: 0;
   }
   .title {
@@ -119,6 +141,10 @@ a {
 .hospitality {
   display: flex;
   align-items: flex-end;
+  @include mobile {
+    max-height: 150px;
+  }
+
   .main {
     @include size(100vw, auto)
   }
@@ -137,7 +163,7 @@ a {
     }
   }
   @include mobile {
-    max-height: 286px;
+    max-height: 150px;
     align-self: flex-start;
     .main {
       @include size(100%, auto);
@@ -154,15 +180,15 @@ a {
   }
   @include tablet {
     .main {
-      @include size(130%, auto);
+      @include size(135%, auto);
     }
   }
   @include mobile {
-    max-height: 286px;
     align-self: flex-start;
     .main {
       @include size(100%, auto);
       }
+    max-height: 150px;
     }
   }
 
@@ -171,7 +197,7 @@ a {
   flex-direction: row;
   align-items: flex-end;
   @include mobile {
-    max-height: 286px;
+    max-height: 150px;
   }
   .main {
     flex-shrink: 0;
@@ -181,22 +207,16 @@ a {
       top: 2rem;
     }
   }
-  img {
-    // height: 100%;
-  }
 }
-
-// .events {
-//
-//   .main {
-//     width: 100%;
-//
-//   }
-// }
 
 .home {
   display: flex;
   align-items: center;
+
+  @include mobile {
+    max-height: 150px;
+  };
+
   .main {
     @include size(100vw, auto)
     @include desktop {
@@ -207,28 +227,61 @@ a {
 }
 
 
-
 .links {
   display: flex;
   flex-flow: column nowrap;
 }
 
 .directions {
+  margin-bottom: 2rem;
+  @include mobile {
+    display: none;
+  }
+}
+
+.directions-mobile {
+  margin: 0 2rem 0 2rem;
+  @include tablet {
+    display: none;
+  }
   p {
     @include cushion(0, .5rem);
   }
 }
 .map {
   display: none;
-  // @include tablet {
-  // }
-  @include size(100vw, auto);
+  @include size(100%, auto);
 }
 
-.nav {
+#hide-map {
+  display: none;
+}
+
+
+
+.menu {
+  width: 140px;
+  background: darken($accent-color, 40%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 100;
+  box-shadow: $box-shadow;
+  @include tablet {
+    display: none;
+  }
+}
+
+.nav, .nav-tablet {
   order: 1;
   width: 100%;
+  display: none;
   @include tablet {
+    display: block;
     order: -1;
   }
 
@@ -238,11 +291,8 @@ a {
     list-style: none;
     justify-content: space-between;
     @include tablet {
-      // display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      // justify-content: space-between;
-      // border-right: 1px solid $main-color;
     }
 
     a {
@@ -268,6 +318,10 @@ a {
         background-color: darken($accent-color, 20%);
       }
 
+      li.selected {
+        background-color: darken($accent-color, 10%);
+      }
+
     }
 
     a:first-of-type {
@@ -280,6 +334,231 @@ a {
     }
     a:hover {
       color: white;
+      font-weight: 600;
+    }
+    a.selected {
+      color: $main-color;
+      font-weight: 600;
+    }
+
+  }
+}
+
+.nav-bottom {
+  order: 1;
+  width: 100%;
+  margin-top: 2rem;
+
+  ul {
+    display: flex;
+    flex-flow: column nowrap;
+    list-style: none;
+    justify-content: space-between;
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    a {
+      color: $main-color;
+      width: 100%;
+      @include tablet {
+        border-left: 1px solid $main-color;
+      }
+
+      li {
+        font-size: .85rem;
+        @include cushion(2px, 0);
+        letter-spacing: .05em;
+        text-align: center;
+        border-bottom: 1px solid $main-color;
+        @include tablet {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    a:first-of-type {
+      border-left: 0px;
+      border-top: 1px solid $main-color;
+      @include tablet {
+        border-top: 0;
+        border-left: 0;
+      }
+    }
+    a:hover, a:active {
+      color: $link;
+    }
+    a.selected {
+      color: $main-color;
+      font-weight: 600;
+    }
+
+  }
+}
+
+.content-container {
+  padding: 0 2rem 0 2rem;
+}
+
+// home page styles
+.home-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.event-list {
+  background: darken($bg-color, 15%);
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  box-shadow: $box-shadow;
+  @include tablet{
+    width: 30%;
+    margin-right: 1rem;
+  }
+  @include tabletLandscape{
+    width: 23%;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 .25rem 0;
+  }
+  p {
+    line-height: 120%;
+    margin-bottom: 0;
+  }
+  .event-date, .event-location {
+    font-weight: 600;
+  }
+}
+
+.welcome {
+  width: 100%;
+  @include tablet{
+    width: 59%;
+  }
+  @include tabletLandscape{
+    width: 70%;
+  }
+}
+
+// attractions page stylesheet
+// .attractions-content {
+//   width: 100%;
+  // @include border(#0f0f);
+// }
+.attractions-content {
+  position: relative;
+  width: 100%;
+  padding: 0 1rem;
+  @include tablet {
+    padding: 0 5%;
+  }
+  // @include border(#f0f);
+  @include tabletLandscape {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+    grid-column-gap: 1rem;
+    justify-content: flex-end;
+  }
+  .intro {
+    font-size: 1.15rem;
+  }
+  .text {
+    @include tabletLandscape {
+      grid-column: 2 / 5;
     }
   }
+  .photo {
+    width: 100%;
+    margin-bottom: 1rem;
+    img {
+      width: 100%;
+    }
+    @include tablet {
+      max-width: 500px;
+    }
+  }
+  .photo1 {
+    @include tabletLandscape {
+      grid-column: 3 / 5;
+    }
+  }
+  .photo2 {
+    @include tabletLandscape {
+      grid-column: 2 / 4;
+    }
+  }
+
+  .photo-left {
+    @include tabletLandscape {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+  #photo1 {
+    @include tabletLandscape {
+      grid-area: 2 / 1 / span 2 / span 2;
+    }
+  }
+
+  #photo2 {
+    @include tabletLandscape {
+      grid-area: 5 / 4 / span 2 / span 2;
+    }
+  }
+
+  #photo3 {
+    @include tabletLandscape {
+      grid-area: 9 / 1 / span 3 / span 2;
+    }
+  }
+
+  #photo4 {
+    @include tabletLandscape {
+      grid-area: 13 / 4 / span 2 / span 2;
+    }
+  }
+
+
+
+// events page styles
+.event-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  .event {
+    // @include min-max-width(31%, 100%);
+    width: 100%;
+    @include tablet {
+      width: 48%;
+    };
+    @include tabletLandscape {
+      width: 31%;
+    };
+    padding: 5px;
+    margin-bottom: 10px;
+    background: #fff;
+    box-shadow: $box-shadow;
+    // box-shadow: 4px 4px 15px rgba(211, 211, 211, .8);
+    p {
+      font-size: .8em;
+    }
+    img {
+      width: 50%;
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
 }

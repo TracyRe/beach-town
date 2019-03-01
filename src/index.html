@@ -3,26 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rediscover Garibaldi - Home</title>
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,600,600i|BioRhyme|Bubbler+One" rel="stylesheet">
+<title>Rediscover Garibaldi - Home</title>
   </head>
   <body>
     <div class="container">
 
       <div class="header home">
-        <a href="index.html" title="Rediscover Garibaldi home page"><img class="title" src="./assets/img/rediscover-garibaldi.png" alt="Rediscover Garibaldi"></a>
+        <div class="menu">
+          Menu
+          <div class="nav">
+            <ul>
+              <a href="#" class="selected"><li class="selected">Home</li></a>
+              <a href="eat-stay.html"><li>Eat &amp; Stay</li></a>
+              <a href="attractions.html"><li>Attractions</li></a>
+              <a href="events.html"><li>Events</li></a>
+              <a href="news.html"><li>In the News</li></a>
+            </ul>
+          </div>
+        </div>
+        <a href="index.html" title="Rediscover Garibaldi home page">
+        <img class="title" src="./assets/img/rediscover-garibaldi.png" alt="Rediscover Garibaldi"></a>
         <img class="main" src="./assets/img/clamLick.jpg" alt="clam ">
       </div>
 
-      <div class="links">
-        <div class="directions">
-          <p>Directions go here</p>
-          <p>Find us on HWY 101 North of Tillamook</p>
-          <p><a id="show-map" href="#map">Show Map!</a></p>
 
-        </div>
-
-        <div class="nav">
+        <div class="nav-tablet">
           <ul>
+            <a href="#" class="selected"><li class="selected">Home</li></a>
             <a href="eat-stay.html"><li>Eat &amp; Stay</li></a>
             <a href="attractions.html"><li>Attractions</li></a>
             <a href="events.html"><li>Events</li></a>
@@ -30,13 +38,65 @@
           </ul>
         </div>
 
-      </div> <!-- ******* END LINKS DIV - CONTAINS NAV, DIRECTIONS & MAP ****** -->
+
+      <!-- <div class="links"> -->
+
+        <div class="directions-mobile">
+          <p>Directions go here</p>
+          <p>Find us on HWY 101 North of Tillamook</p>
+          <p><a class="show-map" href="#map">Show Map!</a></p>
+          <img id="map" class="map" src="./assets/img/map-google.png" alt="Map to Garibaldi on Oregon Coast">
+        </div>
+
+      <!--</div>  ******* END LINKS DIV - CONTAINS NAV, DIRECTIONS & MAP ****** -->
+      <div class="content-container">
+        <div class="home-content">
+          <div class="event-list">
+            <h3>Upcoming Events</h3>
+            <h4>Crab Races</h4>
+            <p class="event-date">Date</p>
+            <p class="event-location">Location</p>
+
+            <h4>Fall Fling</h4>
+            <p class="event-date">Date</p>
+            <p class="event-location">Location</p>
+
+            <h4>Garibaldi Jam</h4>
+            <p class="event-date">Date</p>
+            <p class="event-location">Location</p>
+
+          <a href="events.html">See all events</a>
+
+          </div>
+          <div class="welcome">
+            <div class="directions">
+              <p>Directions go here</p>
+              <p>Find us on HWY 101 North of Tillamook</p>
+              <p><a class="show-map2" href="#map2">Show Map!</a></p>
+              <img id="map2" class="map" src="./assets/img/map-google.png" alt="Map to Garibaldi on Oregon Coast">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          </div>
+
+        </div>
+
+      </div>
 
 
-
-
+      <div class="nav-bottom">
+        <ul>
+          <a href="#" class="selected"><li class="selected">Home</li></a>
+          <a href="eat-stay.html"><li>Eat &amp; Stay</li></a>
+          <a href="attractions.html"><li>Attractions</li></a>
+          <a href="events.html"><li>Events</li></a>
+          <a href="news.html"><li>In the News</li></a>
+        </ul>
+      </div>
       <!-- bottom of the container -->
-      <img id="map" class="map" src="./assets/img/map-google.png" alt="Map to Garibaldi on Oregon Coast">
     </div>
   </body>
 </html>
